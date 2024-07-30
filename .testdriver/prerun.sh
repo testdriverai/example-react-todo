@@ -1,3 +1,4 @@
+cd /Users/ec2-user/actions-runner/_work/testdriver/testdriver/.testdriver/
 npm install
 npm start
 npm install dashcam-chrome --save
