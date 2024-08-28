@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/todo_react_app/static/js/main.5d9884cc.js",
-    "index.html": "/todo_react_app/index.html",
-    "main.5d9884cc.js.map": "/todo_react_app/static/js/main.5d9884cc.js.map"
+    "main.js": "/example-react-todo/static/js/main.5d9884cc.js",
+    "index.html": "/example-react-todo/index.html",
+    "main.5d9884cc.js.map": "/example-react-todo/static/js/main.5d9884cc.js.map"
   },
   "entrypoints": [
     "static/js/main.5d9884cc.js"
