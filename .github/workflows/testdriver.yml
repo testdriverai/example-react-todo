@@ -17,12 +17,9 @@ jobs:
           prompt: |
             1. /run testdriver/test.yml
           prerun: |
-            cd $env:TEMP
-            npm init -y
-            npm install dashcam-chrome
-            cd C:\actions-runner\_work\testdriver\testdriver
             npm install
-            react-scripts start
+            npm install dashcam-chrome
+            Start-Process -NoNewWindow react-scripts start
             Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "http://localhost:3000"
             exit
         env:
