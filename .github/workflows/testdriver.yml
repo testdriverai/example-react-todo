@@ -19,7 +19,7 @@ jobs:
           prerun: |
             npm install
             npm install dashcam-chrome
-            react-scripts start
+            Start-Process -NoNewWindow react-scripts start
             Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "http://localhost:3000"
             exit
         env:
