@@ -18,3 +18,11 @@ steps:
         action: click
       - command: type
         text: My Task Title
+  - prompt: Close Terminal Window
+    commands:
+      - command: focus-application
+        name: Windows PowerShell
+      - command: press-keys
+        keys:
+          - alt
+          - f4
