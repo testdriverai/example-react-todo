@@ -17,14 +17,20 @@ jobs:
           prompt: |
             1. /run testdriver/test.yml
           prerun: |
+            pwd
+            ls
             cd $env:TEMP
-            npm init -y
-            npm install dashcam-chrome
-            cd C:\actions-runner\_work\testdriver\testdriver
+            pwd
+            ls
             npm install
-            react-scripts start
-            Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "http://localhost:3000"
+            Start-Process npm start
+            cd C:\actions-runner\_work\testdriver\testdriver
+            pwd
+            ls
+            npm install
+            Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "${{ env.WEBSITE_URL }}"
             exit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORCE_COLOR: "3"
+          WEBSITE_URL: "http://localhost:3000" # Define the website URL here
