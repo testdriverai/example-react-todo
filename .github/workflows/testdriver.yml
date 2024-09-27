@@ -18,6 +18,8 @@ jobs:
             node-version: "18.x"
       - run: npm install
       - run: npm run build
+        env: 
+          CI: false
       - name: Create a zip archive
         run: |
           zip -r build.zip build/
