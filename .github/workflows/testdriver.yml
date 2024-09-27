@@ -17,7 +17,7 @@ jobs:
         with:
             node-version: "18.x"
       - run: npm install
-      - run: npm build
+      - run: npm run build
       - name: Create a zip archive
         run: |
           zip -r build.zip build/
