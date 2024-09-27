@@ -1,4 +1,4 @@
-name: TestDriver.ai
+name: Example Todo App
 
 on:
   push:
@@ -7,30 +7,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: "TestDriver"
+  build:
+    name: "NPM Build"
     runs-on: ubuntu-latest
     steps:
-      - uses: testdriverai/action@main
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          key: ${{secrets.TESTDRIVER_API_KEY}}
-          prompt: |
-            1. /run testdriver/test.yml
-          prerun: |
-            pwd
-            ls
-            cd $env:TEMP
-            pwd
-            ls
-            npm install
-            Start-Process npm start
-            cd C:\actions-runner\_work\testdriver\testdriver
-            pwd
-            ls
-            npm install
-            Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "${{ env.WEBSITE_URL }}"
-            exit
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FORCE_COLOR: "3"
-          WEBSITE_URL: "http://localhost:3000" # Define the website URL here
+            node-version: "18.x"
+      - run: npm install
+      - run: npm build
+      - name: Create a zip archive
+        run: |
+          zip -r build.zip build/
+
+  # test:
+  #   name: "TestDriver"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: testdriverai/action@main
+  #       with:
+  #         key: ${{secrets.TESTDRIVER_API_KEY}}
+  #         prompt: |
+  #           1. /run testdriver/test.yml
+  #         prerun: |
+  #           pwd
+  #           ls
+  #           cd $env:TEMP
+  #           pwd
+  #           ls
+  #           npm install
+  #           Start-Process npm start
+  #           cd C:\actions-runner\_work\testdriver\testdriver
+  #           pwd
+  #           ls
+  #           npm install
+  #           Start-Process "C:/Program Files/Google/Chrome/Application/chrome.exe" -ArgumentList "--start-maximized", "--load-extension=$(pwd)/node_modules/dashcam-chrome/build", "${{ env.WEBSITE_URL }}"
+  #           exit
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         FORCE_COLOR: "3"
+  #         WEBSITE_URL: "http://localhost:3000" # Define the website URL here
