@@ -15,7 +15,7 @@ jobs:
         with:
           key: ${{secrets.TESTDRIVER_API_KEY}}
           prompt: |
-            1. /run testdriver/test.yml
+            1. /run testdriver.yml
           prerun: |
             cd $env:TEMP
             npm init -y
@@ -28,3 +28,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORCE_COLOR: "3"
+          TD_APP: "Google Chrome"
